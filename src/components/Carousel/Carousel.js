@@ -4,23 +4,15 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { img_300, noPicture } from "../../config/config";
 import "./Carousel.css";
+import { Link } from "react-router-dom";
+
 
 const handleDragStart = (e) => e.preventDefault();
 
 const Gallery = ({ id, media_type }) => {
   const [credits, setCredits] = useState([]);
 
-  const items = credits.map((c) => (
-    <div className="carouselItem">
-      <img
-        src={c.profile_path ? `${img_300}/${c.profile_path}` : noPicture}
-        alt={c?.name}
-        onDragStart={handleDragStart}
-        className="carouselItem__img"
-      />
-      <b className="carouselItem__txt">{c?.name}</b>
-    </div>
-  ));
+  
 
   const responsive = {
     0: {
@@ -46,6 +38,27 @@ const Gallery = ({ id, media_type }) => {
     // eslint-disable-next-line
   }, []);
 
+  const items = credits.map((c) => (
+
+    <Link to={'/actor/'+c.id } className="actor-img">
+
+    <div className="carouselItem">
+      <img
+        src={c.profile_path ? `${img_300}/${c.profile_path}` : noPicture}
+        alt={c?.name}
+        onDragStart={handleDragStart}
+        className="carouselItem__img"
+      />
+      <b className="carouselItem__txt">{c?.name}</b>
+    </div>
+
+    </Link>
+
+      
+      
+    
+  ));
+
   return (
     <AliceCarousel
       mouseTracking
@@ -56,6 +69,7 @@ const Gallery = ({ id, media_type }) => {
       items={items}
       autoPlay
     />
+    
   );
 };
 

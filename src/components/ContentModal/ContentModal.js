@@ -4,6 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import axios from "axios";
+
 import {
   img_500,
   unavailable,
@@ -52,7 +53,6 @@ export default function TransitionsModal({ children, media_type, id }) {
     );
 
     setContent(data);
-    // console.log(data);
   };
 
   const fetchVideo = async () => {
@@ -91,9 +91,16 @@ export default function TransitionsModal({ children, media_type, id }) {
           timeout: 500,
         }}
       >
+        
+        
         <Fade in={open}>
+          
+  
           {content && (
+            
+            
             <div className={classes.paper}>
+              
               <div className="ContentModal">
                 <img
                   src={
@@ -130,6 +137,25 @@ export default function TransitionsModal({ children, media_type, id }) {
                   <span className="ContentModal__description">
                     {content.overview}
                   </span>
+
+                  <span className="Basic-Info">
+                    <span>
+                      <span className="info-tag">Budjet:</span> {content.budget}$ USD
+                    </span>
+
+                    <span>
+                      <span className="info-tag">Duration:</span> {content.runtime} min
+                    </span>
+
+                    <span>
+                      <span className="info-tag">Country:</span> {content.production_countries.length > 0 ? content.production_countries[0].name: ""} 
+                    </span>
+                    
+
+                  </span>
+
+      
+                  
 
                   <div>
                     <Carousel id={id} media_type={media_type} />

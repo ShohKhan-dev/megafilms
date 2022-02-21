@@ -7,11 +7,11 @@
   background-color: #282c34;
   border-radius: 10px;
   position: relative;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .media:hover {
-  background-color: white;
+  background-color: rgb(88, 74, 74);
   color: black;
 }
 
@@ -38,4 +38,21 @@
   padding-bottom: 3px;
   padding: 0 2px;
   padding-bottom: 3px;
+}
+
+.voteAverage {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 3px;
+  padding: 0 2px;
+  padding-bottom: 3px;
+  
+  
+}
+
+.star-icon{
+  vertical-align:bottom;
+  
+  color: yellow;
+
 }

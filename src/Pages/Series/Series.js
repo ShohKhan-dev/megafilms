@@ -1,9 +1,11 @@
 import axios from "axios";
+import "../Pages.css";
 import { useEffect, useState } from "react";
 import Genres from "../../components/Genres/Genres";
 import CustomPagination from "../../components/Pagination/CustomPagination";
 import SingleContent from "../../components/SingleContent/SingleContent";
 import useGenre from "../../hooks/useGenre";
+import TvIcon from "@material-ui/icons/Tv";
 
 const Series = () => {
   const [genres, setGenres] = useState([]);
@@ -30,7 +32,7 @@ const Series = () => {
 
   return (
     <div>
-      <span className="pageTitle">Discover Series</span>
+      <span className="pageTitle"><TvIcon className="star-icon"/>Discover Series<TvIcon className="star-icon"/></span>
       <Genres
         type="tv"
         selectedGenres={selectedGenres}
@@ -50,6 +52,7 @@ const Series = () => {
               date={c.first_air_date || c.release_date}
               media_type="tv"
               vote_average={c.vote_average}
+              vote_count={c.vote_count}
             />
           ))}
       </div>

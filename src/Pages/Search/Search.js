@@ -6,7 +6,7 @@ import {
   TextField,
   ThemeProvider,
 } from "@material-ui/core";
-import "./Search.css";
+import "../Pages.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -52,6 +52,7 @@ const Search = () => {
 
   return (
     <div>
+      <span className="pageTitle">What are you looking for?</span>
       <ThemeProvider theme={darkTheme}>
         <div className="search">
           <TextField
@@ -60,6 +61,8 @@ const Search = () => {
             label="Search"
             variant="filled"
             onChange={(e) => setSearchText(e.target.value)}
+            
+            
           />
           <Button
             onClick={fetchSearch}
@@ -95,6 +98,7 @@ const Search = () => {
               date={c.first_air_date || c.release_date}
               media_type={type ? "tv" : "movie"}
               vote_average={c.vote_average}
+              vote_count={c.vote_count}
             />
           ))}
         {searchText &&

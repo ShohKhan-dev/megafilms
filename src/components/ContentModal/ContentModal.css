@@ -89,3 +89,17 @@
     font-size: 22px;
   }
 }
+
+
+.Basic-Info{
+  margin-top: 10px;
+  
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+
+}
+
+.info-tag{
+  font-weight: bold;
+}

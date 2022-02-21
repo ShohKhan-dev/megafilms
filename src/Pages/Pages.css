@@ -1,0 +1,23 @@
+.trending {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+  
+.pageTitle{
+    font-family: "Roboto", sans-serif;
+    color: yellow;
+      
+}
+  
+.star-icon{
+    vertical-align: bottom;
+    color: yellow;
+  
+}
+
+.search {
+    display: flex;
+    margin: 15px 0;
+}
+  
