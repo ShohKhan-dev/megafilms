@@ -1,10 +1,14 @@
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <span onClick={() => window.scroll(0, 0)} className="header">
-      🎬 Megafilms 🎬
-    </span>
+    <Link to="/" className="actor-img">
+      <span className="header">
+        🎬 Megafilms 🎬
+      </span>
+    </Link>
+    
   );
 };
 
