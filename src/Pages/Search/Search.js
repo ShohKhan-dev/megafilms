@@ -13,12 +13,17 @@ import axios from "axios";
 import CustomPagination from "../../components/Pagination/CustomPagination";
 import SingleContent from "../../components/SingleContent/SingleContent";
 
+import { img_300, noPicture } from "../../config/config";
+
+import { Link } from "react-router-dom";
+
 const Search = () => {
   const [type, setType] = useState(0);
   const [searchText, setSearchText] = useState("");
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([]);
   const [numOfPages, setNumOfPages] = useState();
+  
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -29,10 +34,22 @@ const Search = () => {
     },
   });
 
+
   const fetchSearch = async () => {
+    var mytype = "movie";
+    if (type === 0){
+      var mytype = "movie";
+    }
+    else if (type === 1){
+      var mytype = "tv";
+    }
+    else{
+      var mytype = "person";
+    }
+    
     try {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=${
+        `https://api.themoviedb.org/3/search/${mytype}?api_key=${
           process.env.REACT_APP_API_KEY
         }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
       );
@@ -43,6 +60,7 @@ const Search = () => {
       console.error(error);
     }
   };
+
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -83,24 +101,46 @@ const Search = () => {
           style={{ paddingBottom: 5 }}
           aria-label="disabled tabs example"
         >
-          <Tab style={{ width: "50%" }} label="Search Movies" />
-          <Tab style={{ width: "50%" }} label="Search TV Series" />
+          <Tab style={{ width: "33%" }} label="Search Movies" />
+          <Tab style={{ width: "33%" }} label="Search TV Series" />
+          <Tab style={{ width: "33%" }} label="People" />
         </Tabs>
       </ThemeProvider>
       <div className="trending">
-        {content &&
+        {content && (type === 1 || type === 0) && 
           content.map((c) => (
+            
             <SingleContent
               key={c.id}
               id={c.id}
               poster={c.poster_path}
               title={c.title || c.name}
               date={c.first_air_date || c.release_date}
-              media_type={type ? "tv" : "movie"}
+              media_type={type ? "tv": "movie"}
               vote_average={c.vote_average}
               vote_count={c.vote_count}
             />
           ))}
+
+        {content && type === 2 && 
+            content.map((c) => (
+              
+              <Link to={'/name/'+c.id } className="media">
+
+                <div className="carouselItem">
+                  <img
+                    src={c.profile_path ? `${img_300}/${c.profile_path}` : noPicture}
+                    alt={c?.name}
+                    
+                    className="carouselItem__img"
+                  />
+                  <b className="carouselItem__txt">{c?.name}</b>
+                </div>
+
+              </Link>
+          ))}
+
+        
         {searchText &&
           !content &&
           (type ? <h2>No Series Found</h2> : <h2>No Movies Found</h2>)}

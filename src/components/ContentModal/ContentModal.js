@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
 import axios from "axios";
+
+import { useParams } from "react-router-dom";
+
+
 
 import {
   img_500,
@@ -11,8 +13,9 @@ import {
   unavailableLandscape,
 } from "../../config/config";
 import "./ContentModal.css";
-import { Button } from "@material-ui/core";
+import { Button, Box } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
+import InfoIcon from "@material-ui/icons/Info";
 import Carousel from "../Carousel/Carousel";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({ children, media_type, id }) {
+const ContentModal = () => {
+  let { media_type, id } = useParams();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState();
@@ -71,31 +75,6 @@ export default function TransitionsModal({ children, media_type, id }) {
 
   return (
     <>
-      <div
-        className="media"
-        style={{ cursor: "pointer" }}
-        color="inherit"
-        onClick={handleOpen}
-      >
-        {children}
-      </div>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        
-        
-        <Fade in={open}>
-          
-  
           {content && (
             
             
@@ -161,21 +140,43 @@ export default function TransitionsModal({ children, media_type, id }) {
                     <Carousel id={id} media_type={media_type} />
                   </div>
 
-                  <Button
-                    variant="contained"
-                    startIcon={<YouTubeIcon />}
-                    color="secondary"
-                    target="__blank"
-                    href={`https://www.youtube.com/watch?v=${video}`}
-                  >
-                    Watch the Trailer
-                  </Button>
+
+                  <Box display="flex" justifyContent="space-between">
+                    <div className="trailer-button">
+                        <Button
+                          variant="contained"
+                          startIcon={<YouTubeIcon />}
+                          color="secondary"
+                          target="__blank"
+                          
+                          href={`https://www.youtube.com/watch?v=${video}`}
+                        >
+                          Watch the Trailer
+                        </Button>
+
+                      </div>
+                      
+                      <div className="imbd-button">
+                        <Button
+                          variant="contained"
+                          startIcon={<InfoIcon />}
+                          color="primary"
+                          target="__blank"
+                          
+                          href={`https://www.imdb.com/title/${content.imdb_id}/`}
+                        >
+                          Check IMBD for more
+                        </Button>
+                      </div>
+
+                  </Box>
                 </div>
               </div>
             </div>
           )}
-        </Fade>
-      </Modal>
     </>
   );
 }
+
+
+export default ContentModal;

@@ -40,7 +40,7 @@ const Gallery = ({ id, media_type }) => {
 
   const items = credits.map((c) => (
 
-    <Link to={'/actor/'+c.id } className="actor-img">
+    <Link to={'/name/'+c.id } className="actor-img">
 
     <div className="carouselItem">
       <img

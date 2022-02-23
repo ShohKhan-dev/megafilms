@@ -4,11 +4,6 @@
     justify-content: space-around;
 }
   
-.pageTitle{
-    font-family: "Roboto", sans-serif;
-    color: yellow;
-      
-}
   
 .star-icon{
     vertical-align: bottom;
@@ -21,3 +16,9 @@
     margin: 15px 0;
 }
   
+
+.mymodal{
+    display: "flex";
+    align-items: "center";
+    justify-content: "center";
+  }

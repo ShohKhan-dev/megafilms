@@ -99,10 +99,24 @@
   justify-content: space-between;
   padding: 0 2px;
 
-  margin: 10px 60px;
+  margin: 2% 7%;
 
 }
 
 .info-tag{
   font-weight: bold;
+}
+
+.Movies-section{
+  margin-top: 15px;
+}
+
+.Series-section{
+  margin-top: 15px;
+}
+
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }

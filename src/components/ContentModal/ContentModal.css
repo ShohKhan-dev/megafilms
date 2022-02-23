@@ -103,3 +103,11 @@
 .info-tag{
   font-weight: bold;
 }
+
+.link-buttons{
+  justify-content: space-between;
+}
+
+.trailer-button{
+  margin: 0px 5px;
+}
